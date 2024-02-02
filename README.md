@@ -218,4 +218,8 @@ Verify that the dispatch function is called with the correct action when togglin
 Implementation Details:
 Component File:
 
+<<<<<<< HEAD
 Main component is located at todo/components/main.jsx.
+=======
+Main component is located at todo/components/main.jsx.
+>>>>>>> aba93c2a3a57e25efaf6d22b00cbd8ac7c6d565e
