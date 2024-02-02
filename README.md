@@ -1,70 +1,221 @@
-# Getting Started with Create React App
+Test Suites: 5 passed, 5 total
+Tests      : 14 passed, 14 total
+Snapshots  : 0 Total
+Time       : 6.161 s 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+Test Plan: Header Component
+Component Overview:
+The Header component is responsible for rendering the header section of a todo application. It includes a heading, an input field for adding new todos, and dispatches actions when a new todo is submitted.
 
-### `npm start`
+Test Types:
+Render Test:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ensure that the Header component is rendered correctly with all its elements.
+Integration Test:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Check if the component interacts correctly with the provided dispatch function.
+Test Cases:
+Render Test:
 
-### `npm test`
+Case 1: Renders Header Component
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Render the Header component and check if it's present in the document.
+Assert that the "todos" heading is rendered.
 
-### `npm run build`
+Case 2: Renders Input Element
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Check if the input element for adding new todos is rendered.
+Verify that the input element has the correct placeholder and id attributes.
+Integration Test:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Case 3: Dispatches ADD_ITEM Action on Enter Key Press
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Trigger the submission of a new todo using the Enter key.
+Mock the dispatch function and ensure it's called with the correct action.
+Wait for any asynchronous updates to complete.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Test Plan: Footer Component
+Component Overview:
+The Footer component is responsible for displaying the status and actions related to the todos. It shows the number of active todos and provides an option to clear completed todos.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Test Types:
+Render Test:
 
-## Learn More
+Ensure that the Footer component is rendered correctly with all its elements.
+Functional Test:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Check if the component responds correctly to user interactions, such as clicking the "Clear Completed" button.
+Test Cases:
+Render Test:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Case 1: Renders Footer Component
 
-### Code Splitting
+Render the Footer component and check if it's present in the document.
+Verify that it contains elements for displaying the todo count and the "Clear Completed" button.
+Case 2: Displays Correct Number of Active Todos
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Render the Footer component with a list of active todos.
+Ensure that the displayed todo count is correct based on the active todos provided.
+Functional Test:
 
-### Analyzing the Bundle Size
+Case 3: Clears Completed Todos
+Render the Footer component with a list of completed todos.
+Simulate a click on the "Clear Completed" button.
+Mock the dispatch function and ensure it's called with the correct action.
+Implementation Details:
+Component File:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Footer component is located at todo/components/footer.jsx.
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Test Plan: Input Component
+Component Overview:
+The Input component is responsible for capturing user input, specifically for creating new todos. It validates and sanitizes user input and triggers the creation of a new todo on pressing the "Enter" key.
 
-### Deployment
+Test Types:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Render Test:
+Ensure that the Input component is rendered correctly with the required input elements.
 
-### `npm run build` fails to minify
+Functional Test:
+Check if the component correctly handles user input, triggers the onSubmit callback on pressing "Enter," and sanitizes input.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Test Cases:
+
+Render Test:
+
+Case 1: Renders Input Component
+
+Render the Input component and check if it's present in the document.
+Verify that it contains an input element with the correct attributes.
+Case 2: Input Element Attributes
+
+Ensure that the rendered input element has the correct attributes such as data-testid, type, and placeholder.
+Functional Test:
+
+Case 3: Calls onSubmit on Enter Key Press with Valid Input
+
+Render the Input component with a mock onSubmit callback.
+Simulate typing a valid input and pressing the "Enter" key.
+Verify that the onSubmit callback is called with the sanitized input.
+Case 4: Does Not Call onSubmit on Enter Key Press with Invalid Input
+
+Render the Input component with a mock onSubmit callback.
+Simulate typing an invalid input (below the minimum length) and pressing the "Enter" key.
+Ensure that the onSubmit callback is not called.
+Case 5: Sanitizes Input Before Calling onSubmit
+
+Render the Input component with a mock onSubmit callback.
+Simulate typing input with special characters and pressing the "Enter" key.
+Verify that the onSubmit callback receives the sanitized input.
+Implementation Details:
+Component File:
+
+Input component is located at todo/components/input.jsx.
+
+
+
+
+
+
+Test Plan: Item Component
+Component Overview:
+The Item component manages the rendering and interaction of a single todo item. It includes features like toggling completion status, removing the item, and editing the item's title.
+
+Test Types:
+Render Test:
+
+Ensure that the Item component is rendered correctly with the required elements.
+Verify that the component displays the correct information for a given todo item.
+Functional Test:
+
+Test the component's functionality for toggling completion, removing the item, and editing the item's title.
+Test Cases:
+Render Test:
+
+Case 1: Renders Todo Item Correctly
+
+Render the Item component with a sample todo item.
+Ensure that the todo item, toggle checkbox, label, and remove button are present in the document.
+Verify that the label displays the correct todo title and the checkbox is not checked.
+Case 2: Does Not Render Edit Input Initially
+
+Verify that the input for editing the todo item is not initially rendered.
+Functional Test:
+
+Case 3: Calls TOGGLE_ITEM Dispatch on Checkbox Toggle
+
+Render the Item component with a mock dispatch function.
+Simulate clicking the todo item's toggle checkbox.
+Verify that the dispatch function is called with the TOGGLE_ITEM action.
+Case 4: Calls REMOVE_ITEM Dispatch on Remove Button Click
+
+Render the Item component with a mock dispatch function.
+Simulate clicking the todo item's remove button.
+Verify that the dispatch function is called with the REMOVE_ITEM action.
+Case 5: Displays Input for Editing on Label Double-Click
+
+Render the Item component with a mock dispatch function.
+Simulate double-clicking the todo item's label.
+Use waitFor to wait for the asynchronous updates.
+Verify that the input for editing the todo item is rendered with the correct value.
+Case 6: Hides Input for Editing After Update
+
+Render the Item component with a mock dispatch function.
+Simulate double-clicking the todo item's label, changing the input, and submitting.
+Use waitFor to wait for the asynchronous updates.
+Verify that the input for editing is no longer rendered after updating.
+Implementation Details:
+Component File:
+
+Item component is located at todo/components/item.jsx.
+
+
+
+
+
+Test Plan: Main Component
+Component Overview:
+The Main component is responsible for displaying a list of todos based on the selected route (e.g., "/active", "/completed"). It also includes the functionality to toggle all todos.
+
+Test Types:
+Render Test:
+
+Ensure that the Main component is rendered correctly with the required elements.
+Verify that the todos are displayed correctly based on the provided data.
+Functional Test:
+
+Test the component's functionality for toggling all todos based on the "Toggle All" checkbox.
+Test Cases:
+Render Test:
+
+Case 1: Renders Main Component with Visible Todos
+
+Render the Main component with a list of todos.
+Ensure that the main element, "Toggle All" checkbox, and todo list are present in the document.
+Verify that the "Toggle All" checkbox is not initially checked.
+Check if the todos are rendered correctly in the todo list.
+Case 2: Does Not Render Main Component with No Visible Todos
+
+Render the Main component with an empty list of todos.
+Ensure that the main element, "Toggle All" checkbox, and todo list are present in the document.
+Verify that the "Toggle All" checkbox is not initially checked.
+Check if the todo list is not rendered.
+Functional Test:
+
+Case 3: Toggles All Todos When "Toggle All" Checkbox is Clicked
+Render the Main component with a list of todos and a mock dispatch function.
+Simulate clicking the "Toggle All" checkbox.
+Use waitFor to wait for asynchronous updates.
+Verify that the dispatch function is called with the correct action when toggling all todos.
+Implementation Details:
+Component File:
+
+Main component is located at todo/components/main.jsx.
